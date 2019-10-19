@@ -1,0 +1,12 @@
+push 3
+jmp kek
+pop [2]
+func:
+push [2]
+push [2]
+add
+out
+jmp func
+kek:
+push 7
+out
