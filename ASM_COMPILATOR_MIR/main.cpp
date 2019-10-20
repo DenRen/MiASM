@@ -343,7 +343,7 @@ unsigned char *ConverterToMC (Compiler_t *data) {
                     out_buf = (number_t *) out_buf + 1;
                 }
 
-                if (i >= cmd_JMP && i <= cmd_JNE) {
+                if (i >= cmd_JMP && i <= cmd_CALL) {
                     if (number_iter_compil > 0)
                         p_portal = find_in_portals (portals, q_portals, element);
                     else

@@ -22,7 +22,8 @@ namespace stck {
     struct Secure_Stack_t {
         type_Stack *data;       //Хранит начало стека
         size_t size;            //Хранит длину стека в type_Stack
-        long number;            //Не делать size_t!!!
+        long number;            //Хранит номер верхнего + 1 элемента (Кол-во используемых ячеек с данными
+                                //(без учёта систем безопасности)). Не делать size_t!!!
         size_t real_size;       //В байтах
         int Sec_Level;
         type_Stack *begin;      //Хранит истинное начало массива

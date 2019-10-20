@@ -90,16 +90,18 @@ switch ((const unsigned) i) {
         exit = true;
         break;
     }
-    case cmd_OUT: {
+    case cmd_OUT:
+    case cmd_RET:
         break;
-    }
+
     case cmd_JA:        //Функции, которые принимают словестный аргумент
     case cmd_JAE:
     case cmd_JB:
     case cmd_JBE:
     case cmd_JE:
     case cmd_JNE:
-    case cmd_JMP: {
+    case cmd_JMP:
+    case cmd_CALL: {
         if (!GET_ELEM){
             data->state_stack = conv::SYNTAX_ERROR;
             data->state_func = conv::SYNTAX_ERROR;

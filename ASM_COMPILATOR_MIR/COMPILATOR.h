@@ -39,11 +39,9 @@ enum COMMANDS {
     cmd_JB,
     cmd_JBE,
     cmd_JE,
-    cmd_JNE
-};
-
-enum REGISTERS {
-    AX, BX, CX, DX
+    cmd_JNE,
+    cmd_CALL,
+    cmd_RET
 };
 
 const char commands[][MAXLENCOMM] = {
@@ -65,12 +63,19 @@ const char commands[][MAXLENCOMM] = {
         "jb",
         "jbe",
         "je",
-        "jne"
+        "jne",
+        "call",
+        "ret"
+};
+
+enum REGISTERS {
+    AX, BX, CX, DX, RX, NM
 };
 
 const char registers[][MAXLENREGS] = {
-        "ax", "bx", "cx", "dx"
+        "ax", "bx", "cx", "dx", "rx", "nm"
 };
+// nm - служебный регистр! Хранит начальный номер стека перед вызовом функции (для функции call)
 
 const unsigned size_commands = sizeof (commands) / MAXLENCOMM;
 const unsigned size_registers = sizeof (registers) / MAXLENREGS;

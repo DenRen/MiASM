@@ -166,6 +166,29 @@ int main () {
             case cmd_JBE: IF_FUNC (<=)
             case cmd_JE: IF_FUNC (==)
             case cmd_JNE: IF_FUNC (!=)
+            case cmd_CALL: {
+                //Кладём текущий номер последнего элемента в стеке
+                if (push (&Stack, Stack.number)) ERROR_STCK
+                jmp_t jmp = *(jmp_t *) proc.PC;
+                number_t sdfasdf = (number_t) ((__uint8_t *) ((jmp_t *) proc.PC + 1) - (__uint8_t *) proc.begin_MC);
+                if (push (&Stack,
+                          (number_t) ((__uint8_t *) ((jmp_t *) proc.PC + 1) - (__uint8_t *) proc.begin_MC))) ERROR_STCK
+                proc.PC = (__uint8_t *) proc.begin_MC + jmp;
+                break;
+            }
+            case cmd_RET: {
+                // Очищаем стек от локальных переменных функции, из которой мы хотим выйти
+                __uint32_t quant_call_pops = Stack.number - (__uint32_t) REG[NM] - 2;
+                number_t sdfsdf =  (__uint32_t) REG[NM];
+                number_t temp_value = 0;
+                while (quant_call_pops--)
+                    if (pop (&Stack, &temp_value)) ERROR_STCK
+                // Перемещаем PC
+                if (pop (&Stack, &temp_value)) ERROR_STCK
+                proc.PC = (__uint8_t *) proc.begin_MC + (__uint32_t) temp_value;
+                if (pop (&Stack, &REG[NM])) ERROR_STCK
+                break;
+            }
             default: ERROR_MC
         }
         if (exit)

@@ -1,9 +1,37 @@
-push 7
-push 7
-jne stop
-push 101
+push -7
+call abs
+push ax
+out
+push 5
+call swap
+out
+pop ax
 out
 exit
-stop:
-div
-out
+
+swap:
+    pop rx
+    pop nm
+    pop bx
+    pop ax
+    push bx
+    push ax
+    push nm
+    push rx
+    ret
+
+abs:    ; Овтет будет в ax
+    pop rx
+    pop nm
+    pop ax
+    push ax
+    push nm
+    push rx
+    push ax
+    push 0
+    jae res_abs_pl
+    pop bx
+    push -1
+    mul ax
+    res_abs_pl:
+    ret

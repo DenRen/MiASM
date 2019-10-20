@@ -13,6 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cea34294-74bd-46d1-8a21-00f849acc313" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/COMPILATOR.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/COMPILATOR.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/Super_Stack_Library.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/Super_Stack_Library.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/MY_COMPUTER" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/MY_COMPUTER" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/machinecode.mir" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/machinecode.mir" afterDir="false" />
@@ -104,7 +105,7 @@
       <workItem from="1571473375042" duration="16877000" />
       <workItem from="1571519048921" duration="159000" />
       <workItem from="1571519208865" duration="3446000" />
-      <workItem from="1571557046507" duration="6410000" />
+      <workItem from="1571557046507" duration="17234000" />
     </task>
     <servers />
   </component>
@@ -123,5 +124,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>183</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>168</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
