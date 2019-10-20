@@ -175,7 +175,8 @@ int pop (stck::Secure_Stack_t *Stack, stck::type_Stack *value) {
     }
 
     updating_security_component_values (Stack);
-
+    if (Stack->dumpOn)
+        Dump (Stack, Stack->dump_file);
     return 0;
 }
 
@@ -228,6 +229,9 @@ int push (stck::Secure_Stack_t *Stack, stck::type_Stack value) {
     Stack->data[Stack->number++] = value;
 
     updating_security_component_values (Stack);
+
+    if (Stack->dumpOn)
+        Dump (Stack, Stack->dump_file);
     return 0;
 }
 

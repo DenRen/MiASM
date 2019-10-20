@@ -64,7 +64,7 @@ int main () {
 
     stck::Secure_Stack_t Stack = {};
 
-    Stack.size = 1000;
+    Stack.size = 3;
     Stack.Sec_Level = 2;
     Stack.expansion_coef = 0.2;
     Stack.dumpOn = true;
@@ -89,7 +89,8 @@ int main () {
     reg_t num_reg = 0;
     number_t value_reg = 0;
     bool exit = false;
-
+    size_t number_func = 0;
+    size_t NM0 = 0;
 #include "Decoding_MC.h"
     //Выполняем команду за командой
     while (get_comand (&proc, &comand)) {
@@ -143,7 +144,7 @@ int main () {
             case cmd_DIV: ELEMENTARY_OPERATION (/)
             case cmd_OUT: {
                 if (pop (&Stack, &value_imm)) ERROR_STCK
-                printf ("%.10lg\n", value_imm);
+                printf ("%.33lg\n", value_imm);
                 if (push (&Stack, value_imm)) ERROR_STCK
                 break;
             }
@@ -168,7 +169,14 @@ int main () {
             case cmd_JNE: IF_FUNC (!=)
             case cmd_CALL: {
                 //Кладём текущий номер последнего элемента в стеке
-                if (push (&Stack, Stack.number)) ERROR_STCK
+                if (number_func++) {
+                    if (push (&Stack, NM0)) ERROR_STCK
+                    NM0 = Stack.number - 1;
+                } else {
+                    NM0 = Stack.number;
+                    if (push (&Stack, NM0)) ERROR_STCK
+                }
+
                 jmp_t jmp = *(jmp_t *) proc.PC;
                 number_t sdfasdf = (number_t) ((__uint8_t *) ((jmp_t *) proc.PC + 1) - (__uint8_t *) proc.begin_MC);
                 if (push (&Stack,
@@ -178,8 +186,8 @@ int main () {
             }
             case cmd_RET: {
                 // Очищаем стек от локальных переменных функции, из которой мы хотим выйти
-                __uint32_t quant_call_pops = Stack.number - (__uint32_t) REG[NM] - 2;
-                number_t sdfsdf =  (__uint32_t) REG[NM];
+                __int32_t quant_call_pops = Stack.number - (__uint32_t) REG[NM] - 2;
+                number_t sdfsdf = (__uint32_t) REG[NM];
                 number_t temp_value = 0;
                 while (quant_call_pops--)
                     if (pop (&Stack, &temp_value)) ERROR_STCK

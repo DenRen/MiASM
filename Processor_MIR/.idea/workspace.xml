@@ -12,15 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cea34294-74bd-46d1-8a21-00f849acc313" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/COMPILATOR.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/COMPILATOR.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/Super_Stack_Library.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/Super_Stack_Library.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/MY_COMPUTER" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/MY_COMPUTER" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/machinecode.mir" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/cmake-build-debug/machinecode.mir" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/instruction_comp.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/instruction_comp.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ASM_COMPILATOR_MIR/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Decoding_MC.h" beforeDir="false" afterPath="$PROJECT_DIR$/Decoding_MC.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Processor_MIR" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Processor_MIR" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/stk.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/stk.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -33,6 +29,20 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
@@ -106,6 +116,7 @@
       <workItem from="1571519048921" duration="159000" />
       <workItem from="1571519208865" duration="3446000" />
       <workItem from="1571557046507" duration="17234000" />
+      <workItem from="1571602142769" duration="4152000" />
     </task>
     <servers />
   </component>
@@ -130,15 +141,16 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>183</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>168</line>
-          <option name="timeStamp" value="13" />
+          <line>188</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="Stack.number" />
+        <watch expression="REG[5]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

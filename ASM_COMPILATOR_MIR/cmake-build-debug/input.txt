@@ -1,13 +1,50 @@
-push -7
-call abs
+push 22
+call fact
 push ax
 out
-push 5
-call swap
-out
-pop ax
-out
 exit
+
+fact: ; Максимально 22
+    pop rx
+    pop nm
+    pop ax
+    push ax
+    push nm
+    push rx
+
+    push ax
+
+    call fact2
+    push ax
+    mul ax
+    ret
+
+fact2:
+    pop rx
+    pop nm
+    pop ax
+    push ax
+    push nm
+    push rx
+
+    push ax
+    out
+    push 1
+
+    je suda
+    pop dx
+    push 1
+    sub
+    call fact2
+
+    push ax
+    mul ax
+
+    ret
+
+    suda:
+        push ax
+        ret
 
 swap:
     pop rx
