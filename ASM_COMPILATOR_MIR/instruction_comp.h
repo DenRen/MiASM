@@ -11,9 +11,10 @@
 /*
  * n, r, n+r, [n], [r], [n+r]
  * */
-#define GET_ARG     bool number = false, reg = false, memopen = false;                              \
+#define GET_ARG \
+bool number = false, reg = false, memopen = false;                                                  \
                     int type = 0;                                                                   \
-                    if (!GET_ELEM) SYNTAXERR                                                        \
+                    if (!GET_ELEM && data->state_func == conv::CMD_TOO_LARGE) SYNTAXERR             \
                     TYPE                                                                            \
                     while (type != -1) {                                                            \
                         if (number_iter_compil == 0)                                                \
@@ -60,9 +61,10 @@
                     }                                                                               \
                                                                                                     \
                     if (number_iter_compil == 0) {                                                  \
-                        printf ("\tREG:%lg, NUM:%d\t", arg_num, arg_reg);                           \
+                        printf ("\tREG:%d, NUM:%lg\t", arg_reg, arg_num);                           \
                         printf ("M:%d, I:%d, R:%d\n", comand.mem, comand.imm, comand.reg);          \
                     }
+
 
 switch ((const unsigned) i) {
     case cmd_PUSH: {
@@ -91,6 +93,12 @@ switch ((const unsigned) i) {
     case cmd_OUT: {
         break;
     }
+    case cmd_JA:        //Функции, которые принимают словестный аргумент
+    case cmd_JAE:
+    case cmd_JB:
+    case cmd_JBE:
+    case cmd_JE:
+    case cmd_JNE:
     case cmd_JMP: {
         if (!GET_ELEM){
             data->state_stack = conv::SYNTAX_ERROR;
@@ -98,7 +106,6 @@ switch ((const unsigned) i) {
             return nullptr;
         }
         NEXT
-        if ((p_portal = find_in_portals (portals, q_portals, element)) == -1) ;
         if (number_iter_compil == 0)
             printf("%s\n", element);
         break;

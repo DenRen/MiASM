@@ -33,7 +33,13 @@ enum COMMANDS {
     cmd_SIN,
     cmd_COS,
     cmd_LOGN,
-    cmd_JMP
+    cmd_JMP,
+    cmd_JA,
+    cmd_JAE,
+    cmd_JB,
+    cmd_JBE,
+    cmd_JE,
+    cmd_JNE
 };
 
 enum REGISTERS {
@@ -53,7 +59,13 @@ const char commands[][MAXLENCOMM] = {
         "sin",
         "cos",
         "logn",
-        "jmp"
+        "jmp",
+        "ja",
+        "jae",
+        "jb",
+        "jbe",
+        "je",
+        "jne"
 };
 
 const char registers[][MAXLENREGS] = {

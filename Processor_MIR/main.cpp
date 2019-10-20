@@ -160,6 +160,12 @@ int main () {
                 proc.PC = (__uint8_t *) proc.begin_MC + jmp;
                 break;
             }
+            case cmd_JA: IF_FUNC (>)
+            case cmd_JAE: IF_FUNC (>=)
+            case cmd_JB: IF_FUNC (<)
+            case cmd_JBE: IF_FUNC (<=)
+            case cmd_JE: IF_FUNC (==)
+            case cmd_JNE: IF_FUNC (!=)
             default: ERROR_MC
         }
         if (exit)

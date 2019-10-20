@@ -215,8 +215,8 @@ unsigned char *ConverterToMC (Compiler_t *data) {
     data->MC = out_buf;
     size_t size_MC = 0;
 
-    const size_t TYPE = typeid (number_t).hash_code ();
-    if (TYPE == typeid (double).hash_code ()) {
+    const size_t _TYPE = typeid (number_t).hash_code ();
+    if (_TYPE == typeid (double).hash_code ()) {
 
         CmdCode_t comand = {};
         char element[MAXLENCOMM];   // Тут хранится текущий объект buf (Например: push, add, 5)
@@ -246,11 +246,12 @@ unsigned char *ConverterToMC (Compiler_t *data) {
                     return nullptr;                                                                 \
                 }
         for (int number_iter_compil = 0; number_iter_compil < 2; number_iter_compil++) {
-
+            printf("iter == %d\n", number_iter_compil);
             buf = data->buf;
             size_buf = data->size_buf;
             out_buf = data->MC;
             size_MC = 0;
+            number_line = 0;
 
             char *read_b = buf;     // Begin
             // Устанавливаем на начало слова
@@ -293,27 +294,27 @@ unsigned char *ConverterToMC (Compiler_t *data) {
                     if (number_iter_compil == 0) {
                         printf ("%s ", copy_element);
                         printf ("%s \n", element);
-                    }
 
-                    __int64_t temp = 0;
-                    if (((temp = find_in_portals (portals, q_portals, copy_element)) != -1)
-                        && portals[temp].p_mc != -1 && number_iter_compil == 0) {
-                        PRINT_ERROR ("DUBLE PORTAL")
-                        data->state_func = conv::SYNTAX_ERROR;
-                        data->state_stack = conv::DOUBLE_PORTAL;
-                        return nullptr;
+
+                        __int64_t temp = 0;
+                        if ((temp = find_in_portals (portals, q_portals, copy_element)) != -1) {
+                            printf ("--LINE-- %d\n", number_line);
+                            PRINT_ERROR ("DUBLE PORTAL")
+                            data->state_func = conv::SYNTAX_ERROR;
+                            data->state_stack = conv::DOUBLE_PORTAL;
+                            return nullptr;
+                        }
+                        if (q_portals < max_quantity_portals) {
+                            copy_str (portals[q_portals].name, copy_element, copy_element + strlen (copy_element));
+                            portals[q_portals++].p_mc = size_MC;
+                        } else OVERFLOWERR //EOVERFLOW - чекнуть
+                        continue;
+                    } else {
+                        continue;
                     }
-                    if (q_portals < max_quantity_portals) {
-                        copy_str (portals[q_portals].name, copy_element, copy_element + strlen (copy_element));
-                        portals[q_portals++].p_mc = size_MC;
-                    } else OVERFLOWERR //EOVERFLOW - чекнуть
-                    continue;
-                } else {
-                    copy_element[0] = '\0';
-                    if (number_iter_compil == 0)
-                        printf ("%s ", element);
                 }
-
+                if (number_iter_compil == 0)
+                    printf ("%s ", element);
 
                 bool exit = false;
                 comand = {0};
@@ -323,7 +324,6 @@ unsigned char *ConverterToMC (Compiler_t *data) {
                 comand.code = i;
 
 #include "instruction_comp.h"
-
                 // Здесь нужно положить команду в выходной буффер
                 // Сначала записываются регистры, потом числа
 
@@ -342,21 +342,18 @@ unsigned char *ConverterToMC (Compiler_t *data) {
                     size_MC += sizeof (number_t);
                     out_buf = (number_t *) out_buf + 1;
                 }
-                if (p_portal == -1 && number_iter_compil == 0) {
-                    *(jmp_t *) out_buf = portals[p_portal].p_mc;
-                    size_MC += sizeof (jmp_t);
-                    out_buf = (jmp_t *) out_buf + 1;
-                }
-                if (p_portal != -1) {
-                    *(jmp_t *) out_buf = portals[p_portal].p_mc;
-                    size_MC += sizeof (jmp_t);
-                    out_buf = (jmp_t *) out_buf + 1;
-                }
-                if (i == cmd_JMP && number_iter_compil == 0)
-                    size_MC += sizeof (jmp_t);
 
-                if (exit)
-                    break;
+                if (i >= cmd_JMP && i <= cmd_JNE) {
+                    if (number_iter_compil > 0)
+                        p_portal = find_in_portals (portals, q_portals, element);
+                    else
+                        p_portal = 0;
+
+                    *(jmp_t *) out_buf = portals[p_portal].p_mc;
+                    size_MC += sizeof (jmp_t);
+                    out_buf = (jmp_t *) out_buf + 1;
+                }
+
             }
         }
 #undef GET_ELEM
