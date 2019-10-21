@@ -15,6 +15,9 @@
 #define MAXLENCOMM 100
 #define MAXLENREGS 5
 
+#define DEADLINE_RAM 0
+#define DEADLINE_GDD 0
+
 typedef double number_t;
 typedef __uint8_t comand_t;
 typedef __uint8_t reg_t;
@@ -41,7 +44,8 @@ enum COMMANDS {
     cmd_JE,
     cmd_JNE,
     cmd_CALL,
-    cmd_RET
+    cmd_RET,
+    cmd_FLR
 };
 
 const char commands[][MAXLENCOMM] = {
@@ -65,17 +69,25 @@ const char commands[][MAXLENCOMM] = {
         "je",
         "jne",
         "call",
-        "ret"
+        "ret",
+        "flr"
 };
 
 enum REGISTERS {
-    AX, BX, CX, DX, RX, NM
+    AX, BX, CX, DX, EX, RX, NM, GNM, GL, GW, GCD, RMS, GO
 };
 
 const char registers[][MAXLENREGS] = {
-        "ax", "bx", "cx", "dx", "rx", "nm"
+        "ax", "bx", "cx", "dx", "ex", "rx", "nm", "gnm", "gl", "gw", "gcd", "rms", "go"
 };
 // nm - служебный регистр! Хранит начальный номер стека перед вызовом функции (для функции call)
+// gnm - постоянно устанавливается в значение текущего номера элемента в стеке (Stack.number)
+// go - Graphic on! При 1 выводится графика из видеопамяти и этот регистр обнуляется
+// Запрещённые к переинициализации регистры для графики
+// gl - graphic length
+// gw - graphic width
+// gcd - graphic color depth
+// rms - RAM size
 
 const unsigned size_commands = sizeof (commands) / MAXLENCOMM;
 const unsigned size_registers = sizeof (registers) / MAXLENREGS;
@@ -116,6 +128,14 @@ struct CmdCode_t {
     comand_t mem    : 1;
 };
 
+const __uint16_t RAM_size = 1000;
+
+namespace grph {
+    //BGRA
+    const __uint16_t length = 1920;  // Длина
+    const __uint16_t width = 300;
+    const __uint16_t color_depth = 4; // Глубина цвета
+}
 #endif //MY_COMPUTER_COMPILATOR_H
 
 

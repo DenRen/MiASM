@@ -81,6 +81,7 @@ switch ((const unsigned) i) {
     case cmd_SQRT:
     case cmd_SIN:
     case cmd_LOGN:
+    case cmd_FLR:
     case cmd_COS: {
         GET_ARG
         if (!comand.mem && comand.imm) SYNTAXERR //pop 5
@@ -115,3 +116,74 @@ switch ((const unsigned) i) {
     default: SYNTAXERR
 }
 
+/*
+ *
+
+fact: ; Максимально 22
+    pop rx
+    pop nm
+    pop ax
+    push ax
+    push nm
+    push rx
+
+    push ax
+
+    call fact2
+    push ax
+    mul ax
+    ret
+
+fact2:
+    pop rx
+    pop nm
+    pop ax
+    push ax
+    push nm
+    push rx
+
+    push ax
+    out
+    push 1
+
+    je suda
+    pop dx
+    push 1
+    sub
+    call fact2
+
+    push ax
+    mul ax
+
+    ret
+
+    suda:
+        push ax
+        ret
+
+swap:
+    pop rx
+    pop nm
+    pop bx
+    pop ax
+    push bx
+    push ax
+    push nm
+    push rx
+    ret
+
+abs:    ; Овтет будет в ax
+    pop rx
+    pop nm
+    pop ax
+    push ax
+    push nm
+    push rx
+    push ax
+    push 0
+    jae res_abs_pl
+    pop bx
+    push -1
+    mul ax
+    res_abs_pl:
+    ret*/
